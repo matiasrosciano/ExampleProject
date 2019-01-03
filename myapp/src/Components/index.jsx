@@ -115,9 +115,6 @@ class App extends Component {
                                                                                                             }}
                                                         > Logout </Link>
                                                     </li>
-                                                    <li className="pure-menu-item">
-                                                        <Link to="/registro" className="pure-menu-link"> probando </Link>
-                                                    </li>
                                                 </span>
                                             :
                                                 <span>
