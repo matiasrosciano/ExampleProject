@@ -33,7 +33,7 @@ export default class Login extends Component{
     render(){
         return(
             <article className="Main-container">
-                <h1>Seccion Login</h1>
+                <h1>Seccion Login modificada</h1>
                 <form className="pure-form AuthForm" onSubmit={this.handleOnSubmit}>
                     <input type="email" placeholder="Email" ref={ email => this.email = email } />
                     <input type="password" placeholder="Password" ref={ password => this.password = password } />
