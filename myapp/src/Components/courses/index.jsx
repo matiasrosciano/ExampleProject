@@ -11,12 +11,10 @@ class Courses extends Component {
         super(...props)
 
         this.state = {
-            courses: []
+            courses: courses
         }
 
         this.handleOnAddCourse = this.handleOnAddCourse.bind(this)
-        this.fetchData = this.fetchData.bind(this)
-        this.resetData = this.resetData.bind(this)
     }
     
     handleOnAddCourse(e){
@@ -35,24 +33,11 @@ class Courses extends Component {
         form.reset()
     }
     
-    fetchData(){
-        setTimeout(() => this.setState( { courses:courses } ),2000)
-    }
-
-    resetData(){
-        this.setState( { courses: [] } )
-    }
-
-    componentDidMount(){
-        this.fetchData()
-    }
-
     render(){
         if (!this.state.courses.length){
             return (
                 <div>
                     <p>No Hay cursos</p>
-                    <button onClick={this.fetchData}>Cargar cursos</button>
                 </div>
             )
         } else {
@@ -64,7 +49,6 @@ class Courses extends Component {
                     <CoursesList             
                         courses={this.state.courses}
                     />
-                    <button onClick={this.resetData}>Borrar cursos</button>
                 </div>    
         )
         }
