@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import Courses from '../../courses/'
 
 export default class DashboardCourses extends Component{
     render(){
         return(
             <article className="Main-container">
-                <h1>Seccion Protegida</h1>
+                <Courses />
             </article>
         )
     }
