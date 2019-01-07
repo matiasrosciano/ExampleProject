@@ -3,10 +3,10 @@ import uid from 'uid'
 import PropTypes from 'prop-types'
 import CoursesList from './CourseLists'
 import CourseAddForm from './CourseAddForm'
-import {courses} from '../data/courses.json'
+import { categories, courses, teachers } from '../../data/'
 
 
-class App extends Component {
+class Courses extends Component {
     constructor(...props){
         super(...props)
 
@@ -24,9 +24,9 @@ class App extends Component {
         let form = e.target,
             course = {
                 id: form.id.value,
-                name: (form.name.value) ? form.name.value : App.defaultProps.name,
-                teacher: (form.teacher.value) ? form.teacher.value : App.defaultProps.teacher,
-                date: (form.date.value) ? form.date.value : App.defaultProps.date
+                name: (form.name.value) ? form.name.value : Courses.defaultProps.name,
+                teacher: (form.teacher.value) ? form.teacher.value : Courses.defaultProps.teacher,
+                date: (form.date.value) ? form.date.value : Courses.defaultProps.date
             }
             
         this.setState({
@@ -71,18 +71,18 @@ class App extends Component {
     }
 }
 
-App.PropTypes = {
+Courses.PropTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     teacher: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired
 }
 
-App.defaultProps = {
+Courses.defaultProps = {
     id: uid(10),
     name: 'Curso Desconocido',
     teacher: 'profesor No asignado',
     date: 'Fecha no asignada'
 }
 
-export default App
+export default Courses
