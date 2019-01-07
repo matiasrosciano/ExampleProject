@@ -19,13 +19,14 @@ class Multiselect extends Component {
     render(){
         return(
             <Select
-                multi={true}
+                isMulti={true}
                 simpleValue={true}
                 joinValues={true}
                 name={this.props.name}
                 value={this.state.value}
                 options={this.props.options}
                 onChange={this.handleSelectChange}
+                placeholder={this.props.placeholder}
             />
         )
         
