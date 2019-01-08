@@ -3,7 +3,7 @@ import uid from 'uid'
 import PropTypes from 'prop-types'
 import CoursesList from './CourseLists'
 import CourseAddForm from './CourseAddForm'
-import { categories, courses, teachers } from '../../data/'
+import {courses} from '../../data/'
 
 
 class Courses extends Component {
@@ -20,13 +20,16 @@ class Courses extends Component {
     handleOnAddCourse(e){
         e.preventDefault()
         let form = e.target,
-            course = {
-                id: form.id.value,
-                name: (form.name.value) ? form.name.value : Courses.defaultProps.name,
-                teacher: (form.teacher.value) ? form.teacher.value : Courses.defaultProps.teacher,
-                date: (form.date.value) ? form.date.value : Courses.defaultProps.date
-            }
-            
+        course = {
+          id: (form.id.value) ? form.id.value : Courses.defaultProps.id,
+          name: (form.name.value) ? form.name.value : Courses.defaultProps.name,
+          poster: (form.poster.value) ? form.poster.value : Courses.defaultProps.poster,
+          url: (form.web.value) ? form.web.value : Courses.defaultProps.web,
+          amount: (form.amount.value) ? form.amount.value : Courses.defaultProps.amount,
+          teacher: (form.teacher.value) ? form.teacher.value : Courses.defaultProps.teacher,
+          date: (form.date.value) ? (form.date.value) : Courses.defaultProps.date,
+          categories: (form.categories.value) ? form.categories.value.split(',') : Courses.defaultProps.categories
+        }
         this.setState({
             courses: this.state.courses.concat([course])
         })
@@ -36,37 +39,46 @@ class Courses extends Component {
     render(){
         if (!this.state.courses.length){
             return (
-                <div>
-                    <p>No Hay cursos</p>
-                </div>
+                <article className="Main-container">
+                    <p>No hay cursos</p>
+                </article>
             )
         } else {
             return(
-                <div>
+                <article>
                     <CourseAddForm
-                    onAddCourse={this.handleOnAddCourse}
+                        onAddCourse={this.handleOnAddCourse}
                     />
                     <CoursesList             
                         courses={this.state.courses}
                     />
-                </div>    
+        
+                </article>
         )
         }
     }
 }
 
-Courses.PropTypes = {
+Courses.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
     teacher: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
-}
-
-Courses.defaultProps = {
+    date: PropTypes.string.isRequired,
+    categories: PropTypes.array.isRequired
+  }
+  
+  Courses.defaultProps = {
     id: uid(10),
     name: 'Curso Desconocido',
-    teacher: 'profesor No asignado',
-    date: 'Fecha no asignada'
-}
+    poster: 'https://ed.team/sites/default/files/edteam-logo-118.png?2abr2017',
+    url: 'https://ed.team/cursos',
+    amount: 40,
+    teacher: 'Profesor No Asignado',
+    date: 'Fecha No Definida',
+    categories: ['Sin Categoría']
+  }
 
 export default Courses

@@ -42,7 +42,7 @@ export default class Login extends Component{
                         <div className="u-error">
                             <p>
                             Error: {this.state.loginMessage}
-                            <a href="#" onClick={this.resetPassword} className="alert-link">Olvidaste tu contraseña?</a>
+                            <a onClick={this.resetPassword} className="alert-link">Olvidaste tu contraseña?</a>
                             </p>
                         </div>
                     }

@@ -3,7 +3,7 @@ import './courses-list.css'
 
 const Course = (props) => (
      <li className="CoursesList-item">
-          <a className="CoursesList-link" href={props.url} target="_blank" >
+          <a className="CoursesList-link" href={props.url} target="_blank" without rel="noopener noreferrer">
                <figure>
                     <img src={props.poster} alt={props.name} />
                     <figcaption>

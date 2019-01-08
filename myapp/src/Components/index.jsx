@@ -87,10 +87,10 @@ class App extends Component {
                     <div>
                         <header className="custom-menu-wrapper">
                             <div className="pure-menu custom-menu custom-menu-top">
-                                <a href="#" className="pure-menu-heading custom-menu-brand">
+                                <a className="pure-menu-heading custom-menu-brand">
                                     <img className="Menu-logo" src={Logomoto} alt="Logo"/>
                                 </a>
-                                <a href="#" className="custom-menu-toggle" id="toggle" onClick={this.handleOnClick}><s className="bar"></s><s className="bar"></s></a>
+                                <a className="custom-menu-toggle" id="toggle" onClick={this.handleOnClick}><s className="bar"></s><s className="bar"></s></a>
                             </div>
                             <div className="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom custom-menu-tucked" id="tuckedMenu">
                                 <div className="custom-menu-screen"></div>
