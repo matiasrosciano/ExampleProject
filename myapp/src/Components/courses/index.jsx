@@ -3,7 +3,9 @@ import uid from 'uid'
 import PropTypes from 'prop-types'
 import CoursesList from './CourseLists'
 import CourseAddForm from './CourseAddForm'
-import {courses} from '../../data/'
+import {categories, courses, teachers} from '../../data/'
+import CourseSearch from './CourseSearch';
+
 
 
 class Courses extends Component {
@@ -11,10 +13,20 @@ class Courses extends Component {
         super(...props)
 
         this.state = {
-            courses: courses
+            courses: courses,
+            categories: categories,
+            teachers: teachers,
+            filter:{
+                name: '',
+                teacher: '',
+                categories: [],
+                search: ''
+            }
         }
 
         this.handleOnAddCourse = this.handleOnAddCourse.bind(this)
+        this.handleOnSearch = this.handleOnSearch.bind(this)
+        this.handleOnfilter = this.handleOnfilter.bind(this)
     }
     
     handleOnAddCourse(e){
@@ -35,6 +47,18 @@ class Courses extends Component {
         })
         form.reset()
     }
+
+    handleOnSearch(e){
+        let newFilter = Object.assign( {} , this.state.filter, { [e.target.name]: [e.target.value] } )
+        this.setState({
+            filter : newFilter
+        })
+    }
+
+    handleOnfilter(filter, data){
+        let regex = new RegExp(filter.search, 'i') //la opcion i es para que busque mayusculas y minusculas
+        return data.filter( q => ( regex.test(q.name) || regex.test(q.teacher) || regex.test(q.categories) )  )
+    }
     
     render(){
         if (!this.state.courses.length){
@@ -48,9 +72,15 @@ class Courses extends Component {
                 <article>
                     <CourseAddForm
                         onAddCourse={this.handleOnAddCourse}
+                    
                     />
+
+                    <CourseSearch
+                        onSearch={this.handleOnSearch}
+                    />
+
                     <CoursesList             
-                        courses={this.state.courses}
+                        courses={this.handleOnfilter(this.state.filter,this.state.courses)}
                     />
         
                 </article>
